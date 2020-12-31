@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState } from "react";
+import TaskList from "./Components/TaskList";
+import AddTask from "./Components/AddTask";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
+  const [change, setChange] = useState("All");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AddTask />
+      <select onChange={(e) => setChange(e.target.value)}>
+        <option>All</option>
+        <option>Unfinished</option>
+        <option>Done</option>
+      </select>
+      <TaskList change={change} />
     </div>
   );
 }
